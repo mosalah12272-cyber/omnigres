@@ -5,6 +5,12 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/), and this project adheres
 to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.1.11] - 2025-11-03
+
+### Fixed
+
+* HTTP/3 client sporadic I/O error [#967](https://github.com/omnigres/omnigres/pull/967)
+
 ## [0.1.10] - 2025-11-03
 
 ### Fixed
@@ -99,3 +105,5 @@ Initial release following a few months of iterative development.
 [0.1.9]: [https://github.com/omnigres/omnigres/pull/921]
 
 [0.1.10]: [https://github.com/omnigres/omnigres/pull/966]
+
+[0.1.11]: [https://github.com/omnigres/omnigres/pull/967]

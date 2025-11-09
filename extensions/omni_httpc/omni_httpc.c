@@ -812,6 +812,16 @@ Datum http_execute(PG_FUNCTION_ARGS) {
     }
   }
 
+  // Close all HTTP/3 connections and wait for them to fully close.
+  // This ensures QUIC streams are properly cleaned up before the next request batch.
+  if (ctx.protocol_selector.ratio.http3 > 0) {
+    h2o_quic_close_all_connections(&ctx.http3->h3);
+    while (h2o_quic_num_connections(&ctx.http3->h3) != 0) {
+      CHECK_FOR_INTERRUPTS();
+      h2o_evloop_run(ctx.loop, INT32_MAX);
+    }
+  }
+
   // Start populating the result set
   Tuplestorestate *tupstore = tuplestore_begin_heap(false, false, work_mem);
   rsinfo->setResult = tupstore;
